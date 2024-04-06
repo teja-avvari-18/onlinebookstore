@@ -36,35 +36,13 @@ public class CartService
        return cartList;
    }
 
-//   public Cart createCart(Cart cartObj)
-//   {
-//       try
-//       {
-//           List<Cart> cartList = cartRepository.findAll();
-//
-//           if(cartList!=null)
-//           {
-//               for(Cart existingCart: cartList)
-//               {
-//                   if(existingCart.getUser().getId() == cartObj.getUser().getId())
-//                   {
-//                       if(existingCart.getBook().getId() == cartObj.getBook().getId())
-//                       {
-//                           double price = existingCart.getPrice();
-//
-//                           Book book = bookRepository.findById(cartObj.getBook().getId()).get();
-//                           double bookPrice = book.getPrice();
-//                           existingCart.setPrice((bookPrice*cartObj.getQuantity())+price);
-//                           existingCart.setQuantity(cartObj.getQuantity()+existingCart.getQuantity());
-//                           return cartRepository.save(existingCart);
-//                       }
-//                   }
-//               }
-//           }
 
-    public Cart createCart(CartDTO cartdto) {
 
-try{
+    public Cart createCart(CartDTO cartdto)
+    {
+
+        try
+        {
         Book book = bookRepository.findById(cartdto.getBookId()).get();
         User user = userRepository.findById(cartdto.getUserId()).get();
         Cart cartObj = new Cart(cartdto.getQuantity(), user, book);
@@ -77,7 +55,6 @@ try{
                     if (existingCart.getBook().getId() == cartObj.getBook().getId()) {
                         double price = existingCart.getPrice();
 
-//                            Book book = bookRepository.findById(cartObj.getBook().getId()).get();
                         double bookPrice = book.getPrice();
                         existingCart.setPrice((bookPrice * cartObj.getQuantity()) + price);
                         existingCart.setQuantity(cartObj.getQuantity() + existingCart.getQuantity());
@@ -87,7 +64,6 @@ try{
             }
         }
 
-//           Book book = bookRepository.findById(cartObj.getBook().getId()).get();
         double price = book.getPrice();
         cartObj.setPrice(price * cartObj.getQuantity());
 

@@ -43,14 +43,14 @@ public class UserService
     {
         if(userObj.getId() ==null)
         {
-//            List<User> userList = getAllUsers();
-//            for(User u:userList)
-//            {
-//                if(u.getEmailId().equals(userObj.getEmailId()))
-//                {
-//                    throw new ResourceNotFoundException("User Already registered");
-//                }
-//            }
+            List<User> userList = getAllUsers();
+            for(User u:userList)
+            {
+                if(u.getEmailId().equals(userObj.getEmailId()))
+                {
+                    throw new ResourceNotFoundException("User Already registered");
+                }
+            }
             userObj.setTotalOrder(0);
             User user = userRepository.save(userObj);
             return user;
@@ -80,7 +80,6 @@ public class UserService
     {
         Long id = user.getId();
         getUserById(id);
-//        user.setRole("User");
         user.setTotalOrder(userRepository.findById(user.getId()).get().getTotalOrder());
         return userRepository.save(user);
     }

@@ -68,7 +68,8 @@ public class BookService
 
     public Book  updateBook(Book book)
     {
-
+        try
+        {
             Book book1 = bookRepository.findById(book.getId()).get();
             book1.setStockAvailable(book.getStockAvailable());
             book1.setAuthorName(book.getAuthorName());
@@ -77,10 +78,10 @@ public class BookService
             book1.setGenre(book.getGenre());
             book1.setYear(book.getYear());
             return bookRepository.save(book1);
-
-        //catch (Exception e)
-        //{
-        //  throw new ResourceNotFoundException("The book you are trying to update doesn't exist");
-        //}
+        }
+        catch (Exception e)
+        {
+          throw new ResourceNotFoundException("The book you are trying to update doesn't exist");
+        }
     }
 }

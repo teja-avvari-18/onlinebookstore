@@ -53,40 +53,6 @@ public class OrderService
         }
     }
 
-//    public Order placeOrder(Order order)
-//    {
-//        List<Order> orderList = orderRepository.findAll();
-//
-//        List<Cart> cartList = cartRepository.findByUserId(order.getUser().getId());
-//        int quantity = 0;
-//        double price = 0;
-//
-//        for(Cart existingCart:cartList)
-//        {
-//            quantity+=existingCart.getQuantity();
-//            price = existingCart.getPrice()+price;
-//        }
-//
-//        order.setTotalQuantity(quantity);
-//        order.setTotalPrice(price);
-//
-//        order.setUser(userRepository.findById(order.getUser().getId()).get());
-//        order.setStatus("Success");
-//        Order order1 = orderRepository.save(order);
-//
-//        for(Cart existingCart:cartList)
-//        {
-//            OrderItems orderItem = new OrderItems(existingCart.getQuantity(),existingCart.getPrice(),order1,existingCart.getBook());
-//
-//            Book book = bookRepository.findById(existingCart.getBook().getId()).get();
-//            book.setStockAvailable(book.getStockAvailable()-existingCart.getQuantity());
-//            bookRepository.save(book);
-//            orderItemsRepository.save(orderItem);
-//        }
-//
-//        cartRepository.deleteByUserId(order.getUser().getId());
-//        return order1;
-//    }
 
 
     public Order placeOrder(Long userId)
@@ -106,8 +72,10 @@ public class OrderService
             price = existingCart.getPrice()+price;
         }
 
+
         order.setTotalQuantity(quantity);
-        order.setTotalPrice(price);
+        order.setTotalPrice(totalPriceAfterDiscount(quantity,price));
+
 
         order.setUser(userRepository.findById(userId).get());
         order.setOrderDate(LocalDate.now());
@@ -131,16 +99,48 @@ public class OrderService
     public String removeOrder(Long id)
     {
         Order order = getOrderById(id);
-        order.setStatus("Cancelled");
-        List<OrderItems> orderItemsList = orderItemsRepository.findAll();
-        for(OrderItems e : orderItemsList){
-            if(e.getOrder().getId()==id){
-                Book book = bookRepository.findById(e.getBook().getId()).get();
-                book.setStockAvailable(e.getQuantity()+book.getStockAvailable());
-            }
+        LocalDate orderedDate = order.getOrderDate();
+        LocalDate currentDate = LocalDate.now();
+        if(orderedDate.plusDays(1).compareTo(currentDate)==0)
+        {
+            return "Your order cannot be cancelled";
         }
-        orderRepository.save(order);
-        return "Your order has been cancelled successfully";
+        else
+        {
+            order.setStatus("Cancelled");
+            List<OrderItems> orderItemsList = orderItemsRepository.findAll();
+            for(OrderItems e : orderItemsList){
+                if(e.getOrder().getId()==id){
+                    Book book = bookRepository.findById(e.getBook().getId()).get();
+                    book.setStockAvailable(e.getQuantity()+book.getStockAvailable());
+                }
+            }
+            orderRepository.save(order);
+            return "Your order has been cancelled successfully";
+        }
+    }
+
+    public double totalPriceAfterDiscount(int quantity,double price)
+    {
+
+
+        if(quantity>=50)
+        {
+             price = price*(1-0.30);
+        }
+        else if (quantity>=25)
+        {
+            price = price*(1-0.20);
+        }
+        else if(quantity>=10)
+        {
+            price =price*(1-0.10);
+        }
+        else
+        {
+            price = price;
+        }
+       return price;
     }
 
 
