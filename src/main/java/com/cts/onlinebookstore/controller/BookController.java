@@ -51,4 +51,35 @@ public class BookController
         Book book = bookService.updateBook(bookObj);
         return new ResponseEntity<>(book,HttpStatus.OK);
     }
+
+    @GetMapping("book/author/{authorName}")
+    public ResponseEntity<List<Book>> getBookBasedOnAuthorName(@PathVariable String authorName)
+    {
+        List<Book> bookList = bookService.searchBooksBasedOnAuthorName(authorName);
+        return new ResponseEntity<>(bookList, HttpStatus.OK);
+    }
+
+    @GetMapping("book/{genre}")
+    public ResponseEntity<List<Book>> getBookBasedOnGenre(@PathVariable String genre)
+    {
+        List<Book> bookList = bookService.searchBooksBasedOnGenre(genre);
+        return new ResponseEntity<>(bookList, HttpStatus.OK);
+    }
+
+    @GetMapping("book/title/{title}")
+    public ResponseEntity<List<Book>> getBookBasedOnTitle(@PathVariable String title)
+    {
+        List<Book> bookList = bookService.searchBooksBasedOnTitle(title);
+        return new ResponseEntity<>(bookList, HttpStatus.OK);
+    }
+
+
+    @GetMapping("price/{price1}/{price2}")
+    public ResponseEntity<List<Book>> getBookBasedOnPriceRange(@PathVariable double price1, @PathVariable double price2)
+    {
+        List<Book> bookList = bookService.searchBooksBasedOnPriceRange(price1,price2);
+        return new ResponseEntity<>(bookList, HttpStatus.OK);
+    }
+
+
 }

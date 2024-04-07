@@ -84,4 +84,44 @@ public class BookService
           throw new ResourceNotFoundException("The book you are trying to update doesn't exist");
         }
     }
+
+    public List<Book> searchBooksBasedOnAuthorName(String authorName)
+    {
+        List<Book> bookList = bookRepository.findBooksBasedOnAuthorName(authorName);
+        if(bookList.isEmpty())
+        {
+            throw new ResourceNotFoundException("The books you are searching of the author "+authorName+" are not present");
+        }
+        return bookList;
+    }
+
+    public List<Book> searchBooksBasedOnGenre(String genre)
+    {
+        List<Book> bookList = bookRepository.findBooksBasedOnGenre(genre);
+        if(bookList.isEmpty())
+        {
+            throw new ResourceNotFoundException("There are no books for the genre "+genre);
+        }
+        return bookList;
+    }
+
+    public List<Book> searchBooksBasedOnTitle(String title)
+    {
+        List<Book> bookList = bookRepository.findBooksBasedOnTitle(title);
+        if(bookList.isEmpty())
+        {
+            throw new ResourceNotFoundException("There are no books based on the title "+title);
+        }
+        return bookList;
+    }
+
+    public List<Book> searchBooksBasedOnPriceRange(double price1,double price2)
+    {
+        List<Book> bookList = bookRepository.findBooksBasedOnPriceRange(price1,price2);
+        if(bookList.isEmpty())
+        {
+            throw new ResourceNotFoundException("There are no books in the price range you are searching for");
+        }
+        return bookList;
+    }
 }
