@@ -1,0 +1,74 @@
+<!-- <!-- <app-header></app-header>
+<div class="background-image">
+    <div class="container mt-5">
+      <h2 class="text-center mb-4 text-light">Book Store</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let book of books">
+          <div class="card border-0 shadow">
+            <div class="card-body">
+              <h5 class="card-title">{{ book.title }}</h5>
+              <p class="card-text"><strong>Id : </strong>{{book.id}}</p>
+              <p class="card-text"><strong>Author:</strong> {{ book.authorName }}</p>
+              <p class="card-text"><strong>Genre:</strong> {{ book.genre }}</p>
+              <p class="card-text"><strong>Year:</strong> {{ book.year }}</p>
+              <p class="card-text"><strong>Price:</strong> {{ book.price }}</p>
+              <p class="card-text"><strong>Stock Available:</strong> {{ book.stockAvailable }}</p>
+              <button class="btn btn-primary btn-block" (click)="addToCart(book.id,15)">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->
+
+
+
+
+
+<app-header></app-header>
+
+<div class="background-image">
+  <div class="container mt-5">
+    <h2 class="text-center mb-4 text-light">Book Store</h2>
+    <!-- Add New Book Button -->
+    <div class="d-flex justify-content-end mb-3">
+      <button class="btn btn-success" (click)="goToAddBook()">Add New Book</button>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let book of books">
+        <div class="card border-0 shadow">
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <!-- <p class="card-text"><strong>Id : </strong>{{book.id}}</p> -->
+            <p class="card-text">
+              <strong>Author:</strong> {{ book.authorName }}
+            </p>
+            <p class="card-text"><strong>Genre:</strong> {{ book.genre }}</p>
+            <p class="card-text"><strong>Year:</strong> {{ book.year }}</p>
+            <p class="card-text"><strong>Price:</strong> {{ book.price }}</p>
+            <p class="card-text">
+              <strong>Stock Available:</strong> {{ book.stockAvailable }}
+            </p>
+            <div class="d-flex justify-content-between">
+              <button
+                class="btn btn-primary"
+                style="margin-right: 5px;"
+                (click)="goToUpdate(book.id)"
+              >
+                Update Book
+              </button>
+              <button
+                class="btn btn-danger"
+                style="margin-left: 5px;" 
+                (click)="deleteBook(book.id)"
+              >
+                Delete Book
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
