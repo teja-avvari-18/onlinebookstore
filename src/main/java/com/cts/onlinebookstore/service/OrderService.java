@@ -101,7 +101,7 @@ public class OrderService
         Order order = getOrderById(id);
         LocalDate orderedDate = order.getOrderDate();
         LocalDate currentDate = LocalDate.now();
-        if(orderedDate.plusDays(1).compareTo(currentDate)==0)
+        if(orderedDate.plusDays(1).compareTo(currentDate)<0)
         {
             return "Your order cannot be cancelled";
         }
@@ -141,6 +141,11 @@ public class OrderService
             price = price;
         }
        return price;
+    }
+
+    public List<Order> getOrdersByUserId(Long userId)
+    {
+        return  orderRepository.findByUserId(userId);
     }
 
 

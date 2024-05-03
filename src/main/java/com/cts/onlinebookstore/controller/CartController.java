@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(value = "http://localhost:4200/",maxAge = 3600)
 @RestController
 @RequestMapping("/carts")
 public class CartController
@@ -45,5 +46,12 @@ public class CartController
     {
         Cart cartObj = cartService.updateCart(id,updateCart);
         return new ResponseEntity<>(cartObj,HttpStatus.OK);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Cart>> getCartsByUserId(@PathVariable Long userId)
+    {
+        List<Cart> carts = cartService.getCartsByUserId(userId);
+        return new ResponseEntity<>(carts,HttpStatus.OK);
     }
 }

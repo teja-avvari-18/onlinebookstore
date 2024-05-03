@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-
 @Table(name = "cart")
 @NoArgsConstructor
 public class Cart {

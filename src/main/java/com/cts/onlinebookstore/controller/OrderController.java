@@ -2,6 +2,7 @@ package com.cts.onlinebookstore.controller;
 
 import com.cts.onlinebookstore.dto.UpdateCart;
 import com.cts.onlinebookstore.model.Book;
+import com.cts.onlinebookstore.model.Cart;
 import com.cts.onlinebookstore.model.Order;
 import com.cts.onlinebookstore.model.User;
 import com.cts.onlinebookstore.service.OrderService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(value = "http://localhost:4200/",maxAge = 3600)
 @RestController
 @RequestMapping("/orders")
 public class OrderController
@@ -62,6 +64,13 @@ public class OrderController
     public String deleteOrder(@PathVariable Long id)
     {
         return orderService.removeOrder(id);
+    }
+
+    @GetMapping("/order/{userId}")
+    public ResponseEntity<List<Order>> getOrdersByUserId(@PathVariable Long userId)
+    {
+        List<Order> orders = orderService.getOrdersByUserId(userId);
+        return new ResponseEntity<>(orders,HttpStatus.OK);
     }
 
 
