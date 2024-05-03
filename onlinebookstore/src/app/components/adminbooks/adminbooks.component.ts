@@ -29,6 +29,7 @@ export class AdminbooksComponent {
   deleteBook(id:number){
     this.bookService.deleteBookBasedOnBookID(id).subscribe(data =>{
       alert("Book Deleted Successfully");
+      this.router.navigate(['admin']);
     })
   }
 

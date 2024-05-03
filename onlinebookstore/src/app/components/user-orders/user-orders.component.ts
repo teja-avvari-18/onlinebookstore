@@ -11,11 +11,12 @@ import { OrderService } from '../../service/order.service';
 export class UserOrdersComponent {
 
   orders! : Orders[];
+  uid=Number(localStorage.getItem('id'));
 
   constructor(private orderService:OrderService,private router:Router){}
 
   ngOnInit():void{
-    this.getOrdersOfUser(15);
+    this.getOrdersOfUser(this.uid);
   }
 
   getOrdersOfUser(id:number){

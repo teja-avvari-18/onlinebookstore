@@ -1,16 +1,17 @@
 
 
 
-<app-adminheader></app-adminheader>
 
 
 <nav class="navbar sticky-top navbar-expand navbar-dark bg-dark">
     <a class="navbar-brand"routerLink="/homepage"> Online Book Store</a>
     <div class="navbar-collapse">
         <ul class="navbar-nav" style="margin-left: 300px;">
-           
             <li class="nav-item" routerlinkactive="active">
-                <a class="nav-link" routerLink="admin/books">Books</a>
+                <a class="nav-link" routerLink="/admin">Home</a>
+            </li>
+            <li class="nav-item" routerlinkactive="active">
+                <a class="nav-link" routerLink="/admin/books">Books</a>
             </li>
             <li class="nav-item" routerlinkactive="active">
                 <a class="nav-link" routerLink="/orders">Orders</a>
@@ -18,7 +19,7 @@
         </ul>
         
         <a routerLink="" style="margin-right: 20px;">
-            <button class="btn btn-danger">Log Out</button>
+            <button class="btn btn-danger" (click)="logOut()">Log Out</button>
         </a>
     </div>
 </nav>

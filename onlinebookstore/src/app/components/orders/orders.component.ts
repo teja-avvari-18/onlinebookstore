@@ -27,7 +27,7 @@ export class OrdersComponent implements OnInit{
   cancelOrder(id:number){
     this.orderService.cancelOrder(id).subscribe(data => {
       console.log(data);
-      this.router.navigate(['/home']);
+      this.router.navigate(['/admin']);
     });
   }
 

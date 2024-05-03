@@ -13,8 +13,6 @@ import { BookUpdateComponent } from './components/book-update/book-update.compon
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersComponent } from './components/users/users.component';
-// import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
-import { PlaceOrderComponent } from './components/place-order/place-order.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CartService } from './service/cart.service';
@@ -22,6 +20,7 @@ import { UserService } from './service/user.service';
 import { AdminbooksComponent } from './components/adminbooks/adminbooks.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 import { AdminheaderComponent } from './components/adminheader/adminheader.component';
+import { AdminpageComponent } from './components/adminpage/adminpage.component';
 
 
 
@@ -36,12 +35,12 @@ import { AdminheaderComponent } from './components/adminheader/adminheader.compo
     BookUpdateComponent,
     AddBookComponent,
     UsersComponent,
-    PlaceOrderComponent,
     PagenotfoundComponent,
     HeaderComponent,
     AdminbooksComponent,
     UserOrdersComponent,
-    AdminheaderComponent
+    AdminheaderComponent,
+    AdminpageComponent
   ],
   imports: [
     BrowserModule,

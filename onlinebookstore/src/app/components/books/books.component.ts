@@ -17,18 +17,20 @@ export class BooksComponent implements OnInit {
 
   constructor(private bookService:BooksService,private cartService:CartService){}
 
+  uId=Number(localStorage.getItem('id'));
   ngOnInit():void{
     this.bookService.getAllBooks().subscribe((data:Books[])=> {
       this.books = data;
     })
   }
 
-  addToCart(quantity:number,bookId:number,userId:number=15) {
+  addToCart(quantity:number,bookId:number,userId:number) {
     this.cartDTO.bookId=bookId;
     this.cartDTO.userId=userId;
-    this.cartDTO.quantity=quantity;
+    // this.cartDTO.quantity=quantity;
     this.cartService.addToCart(this.cartDTO).subscribe(data => {
      console.log(data);
+     alert("Book added to cart");
     })
 
   }

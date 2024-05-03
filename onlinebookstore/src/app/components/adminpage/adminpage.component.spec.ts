@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlaceOrderComponent } from './place-order.component';
+import { AdminpageComponent } from './adminpage.component';
 
-describe('PlaceOrderComponent', () => {
-  let component: PlaceOrderComponent;
-  let fixture: ComponentFixture<PlaceOrderComponent>;
+describe('AdminpageComponent', () => {
+  let component: AdminpageComponent;
+  let fixture: ComponentFixture<AdminpageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PlaceOrderComponent]
+      declarations: [AdminpageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(PlaceOrderComponent);
+    fixture = TestBed.createComponent(AdminpageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

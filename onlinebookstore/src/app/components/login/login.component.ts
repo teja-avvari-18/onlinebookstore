@@ -12,17 +12,31 @@ import { UserService } from '../../service/user.service';
 }) 
 export class LoginComponent { 
   user: User = new User();
+  role:string = '';
+
   
   constructor(private userService: UserService, private router: Router) { }
   
   onSubmit(): void { 
-    this.userService.logIn(this.user.emailId, this.user.password).subscribe({
-      next: (loggedInUser) => { 
-        this.router.navigate(['/home']); 
-      }, 
-      error: (error) => { 
-        alert("Please Register"); 
+    this.userService.logIn(this.user.emailId, this.user.password).subscribe(data=>{
+       
+        this.user=data;
+        if (this.user.role ==='admin'){
+          localStorage.setItem('user','admin');
+          localStorage.setItem('id',""+this.user.id);
+          this.router.navigate(['/admin']);
+        }
+        else{
+          localStorage.setItem('id',""+this.user.id);
+          localStorage.setItem('user','user');
+          this.router.navigate(['/home']); 
+        }
+      },error => {
+        alert('Check your credentials once. If you are not registered, please register.');
+      });
+        
       }
-    });
+      
+     
   }
-}
+
