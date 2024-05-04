@@ -1,28 +1,26 @@
-
-
-
-
 <nav class="navbar sticky-top navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand"routerLink="/homepage"> Online Book Store</a>
-    <div class="navbar-collapse">
-        <ul class="navbar-nav" style="margin-left: 300px;">
-            <li class="nav-item" routerlinkactive="active">
-                <a class="nav-link" routerLink="/home">Home</a>
-            </li>
-            <li class="nav-item" routerlinkactive="active">
-                <a class="nav-link" routerLink="/books">Books</a>
-            </li>
-            <li class="nav-item" routerlinkactive="active">
-                <a class="nav-link" routerLink="/user/orders">Orders</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav ms-auto" style="margin-right: 20px;">
-            <li class="nav-item" routerlinkactive="active">
-                <a class="nav-link" routerLink="/carts">Cart</a>
-            </li>
-        </ul>
-        <a routerLink="" style="margin-right: 20px;">
-            <button class="btn btn-danger" (click)="logOut()">Log Out</button>
+  <a class="navbar-brand" routerLink="/homepage">Online Book Store</a>
+  <div class="navbar-collapse">
+    <ul class="navbar-nav" style="margin-left: 300px">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/books">Books</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/user/orders">Orders</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/carts">Cart</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="" style="margin-right: 20px">
+          <button class="btn btn-danger" (click)="logOut()">Log Out</button>
         </a>
-    </div>
+      </li>
+    </ul>
+  </div>
 </nav>

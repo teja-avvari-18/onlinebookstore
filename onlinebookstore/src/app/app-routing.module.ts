@@ -24,10 +24,11 @@ const routes: Routes = [
  {path:'user/orders',canActivate:[userauthGuard],component:UserOrdersComponent},
 
  {path:'books/update/:id',canActivate:[adminauthGuard],component:BookUpdateComponent},
+ {path:'books/add',canActivate:[adminauthGuard],component:AddBookComponent},
  {path:'admin/books',canActivate:[adminauthGuard],component:AdminbooksComponent},
  {path:'admin',canActivate:[adminauthGuard],component:AdminpageComponent},
  {path:'orders',canActivate:[adminauthGuard],component:OrdersComponent},
- {path:'books/add',canActivate:[adminauthGuard],component:AddBookComponent},
+ 
  
  
 

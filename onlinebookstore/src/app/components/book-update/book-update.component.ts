@@ -29,6 +29,7 @@ export class BookUpdateComponent {
     this.bookservice.updateBook(this.books).subscribe(data => {
       this.books = data;
       console.log(data);
+      alert("Book updated successfully");
       this.router.navigate(['admin/books']);
     });
   }

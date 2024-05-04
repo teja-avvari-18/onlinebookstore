@@ -58,7 +58,7 @@
         </tbody>
     </table>
     <div class="text-center">
-      <button class="btn btn-success" (click)="placeOrder()">Place Order</button>
+      <button class="btn btn-success" (click)="placeOrder()" [disabled]="carts.length === 0">Place Order</button>
   </div>
 </div>
 
