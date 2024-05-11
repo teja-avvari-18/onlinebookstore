@@ -1,6 +1,7 @@
 
 
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cart } from '../../models/cart';
 import { Orders } from '../../models/orders';
 import { CartService } from '../../service/cart.service';
@@ -18,7 +19,7 @@ export class CartComponent implements OnInit {
   order: Orders = new Orders();
   uid = Number(localStorage.getItem('id'));
 
-  constructor(private cartService: CartService,private orderService:OrderService) { }
+  constructor(private cartService: CartService,private orderService:OrderService,private router:Router) { }
 
   ngOnInit(): void {
     this.getCartsOfUser(this.uid);
@@ -45,6 +46,7 @@ export class CartComponent implements OnInit {
       this.orderService.createOrder(this.uid).subscribe(data => {
         console.log(data);
         alert("Your order is successfully placed");
+        this.router.navigate(['/user/orders']);
       })
     }
 
